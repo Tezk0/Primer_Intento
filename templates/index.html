@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro y Log-In</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="divgrande">
+        <div class="divchicoindex1">
+            <h1>Registro</h1>
+            <form action="/Registrar" method="post">
+                <label for="nombre">Nombre </label>
+                <input type="text" name="nombre" placeholder="Ej: Juan" required minlength="2"><br><br>
+                <label for="apellido">Apellido </label>
+                <input type="text" name="apellido" placeholder="Ej: Gutierrez" required minlength="2"><br><br>
+                <label for="email">E-mail </label>
+                <input type="email" name="email" placeholder="Ej: JuanGutierrez@gmail.com" required><br><br>
+                <label for="contraseña">Contraseña </label>
+                <input type="password" name="password" placeholder="contraseña123" required><br><br>
+                <label for="conf password">Conf. Contraseña </label>
+                <input type="password" name="conf_password" placeholder="Ingresa de nuevo tu contraseña" required><br><br>
+                <input type="submit" value="Registrar">
+            </form>
+        </div>
+
+        <div class="divchicoindex2">
+            <h1>Inicio de Sesión</h1>
+            <form action="/Login" method="post">
+                <label for="email">E-mail </label>
+                <input type="email" name="email" placeholder="Tu email" required><br><br>
+                <label for="contraseña">Contraseña </label>
+                <input type="password" name="password" placeholder="Tu contraseña" required><br><br>
+                <input type="submit" value="Iniciar Sesión">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
