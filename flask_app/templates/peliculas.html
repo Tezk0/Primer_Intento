@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Cine</title>
+</head>
+<body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                        <p class="error">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        {# custion pal flash #}
+
+    <h1>Bienvenido {{ usuario_sesion.nombre }}</h1>
+    <a href="/nuevo">Nueva Peli</a>
+    <a href="/cerrar_sesion">Cerrar Sesión</a>
+    <table class="tabla_peliculas">
+        <thead>
+            <th>Pelicula</th>
+            <th>Director</th>
+            <th>Fecha de Estreno</th>
+            <th>Sinopsis</th>
+            <th>Acciones</th>
+        </thead>
+
+        <tbody>
+        {% for pelicula in peliculas %}
+            
+            <tr>
+                <td>{{ pelicula.nombre_pelicula }}</td>
+                <td>{{ pelicula.director }}</td>
+                <td>{{ pelicula.fecha_estreno }}</td>
+                <td>{{ pelicula.sinopsis }}</td>
+                <td><a href="/cine/{{ pelicula.id }}">Ver</a></td>
+                <td><a href="/editar/{{ pelicula.id }}">Editar</a></td>
+                <td><a href="/borrar/{{ pelicula.id }}">Borrar</a></td>
+            </tr>
+        {% endfor %}  
+        </tbody>
+    </table>
+</body>
+</html>

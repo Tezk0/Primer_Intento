@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Pelicula número {{ pelicula.id }}</title>
+</head>
+<body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                        <p class="error">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        {# custion pal flash #}
+    <a href="/cine">Inicio</a>
+    <a href="/cerrar_sesion">Cerrar Sesión</a>
+    <div>
+        <h1>{{ pelicula.nombre_pelicula }}</h1>
+        <h2>Publicado por: {{ usuario_pelicula.nombre }}</h2>
+        <p>Director: {{ pelicula.director }}</p>
+        <p>Fecha: {{ pelicula.fecha_estreno }}</p>
+        <p>Sinopsis: {{ pelicula.sinopsis }}</p>
+    </div>
+    <div class="seccion_comentarios">
+        {% if usuario.id == usuario_pelicula.id %}
+            <h2>No puedes comentar en tu propia pelicula</h2>
+        {% else %}
+        <form action="/comentar" method="post">
+            <input type="hidden" name="usuario_id" value="{{ usuario.id }}">
+            <input type="hidden" name="pelicula_id" value="{{ pelicula.id }}">
+            <input type="text" name="comentario" placeholder="Escribe un comentario...">
+            <input type="submit" value="Enviar">
+        </form>
+        {% for comentario in comentarios %}
+            <p>{{ comentario.comentario }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

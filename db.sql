@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `intento_certificacion`.`peliculas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre_pelicula` VARCHAR(45) NOT NULL,
   `director` VARCHAR(45) NOT NULL,
-  `fecha_estreno` VARCHAR(45) NOT NULL,
+  `fecha_estreno` DATE NOT NULL,
   `sinopsis` TEXT NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

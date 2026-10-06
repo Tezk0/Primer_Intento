@@ -1,4 +1,4 @@
-from mysqlconnection import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
 
 DB_NAME = 'intento_certificacion'
 
@@ -33,7 +33,13 @@ class Usuario:
     @classmethod
     def get_by_id(cls,datos):
         query = "SELECT * FROM usuarios WHERE id = %(id)s;"
-        resultados = connectToMySQL(DB_NAME).query_db(query,datos)
+        resultados = connectToMySQL(DB_NAME).query_db(
+            query,
+            datos
+        )
+
+        if not resultados:
+            return None
 
         return cls(resultados[0])
 

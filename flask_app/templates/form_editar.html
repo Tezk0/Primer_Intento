@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Nueva Peli</title>
+</head>
+<body>
+    <div class="tituloformpeli">
+        <h1>Editar Pelicula</h1>
+        <a href="/cine">Inicio</a>
+        <a href="/cerrar_sesion">Cerrar Sesión</a>
+    </div>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                        <p class="error">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        {# custion pal flash #}
+
+        <form action="/Editar_peli" method="post">
+            <input type="hidden" name="id_pelicula" value="{{ pelicula.id }}">
+            <label for="nombre_peli">Nombre de Peli:</label>
+            <input type="text" name="nombre_pelicula" minlength="2" required value="{{ pelicula.nombre_pelicula }}"><br><br>
+            <label for="director">Director:</label>
+            <input type="text" name="director" minlength="2" required value="{{ pelicula.director }}"><br><br>
+            <label for="fecha_estreno">Fecha Estreno:</label>
+            <input type="date" name="fecha_estreno" minlength="2" required value="{{ pelicula.fecha_estreno }}"><br><br>
+            <label for="">Sinopsis:</label>
+            <textarea name="sinopsis" minlength="2" value="{{ pelicula.sinopsis }}"></textarea><br><br>
+            <input type="submit" value="Guardar Película">
+        </form>
+    </div>
+</body>
+</html>

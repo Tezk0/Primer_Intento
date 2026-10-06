@@ -8,7 +8,17 @@
 </head>
 <body>
     <div class="divgrande">
+
+        
         <div class="divchicoindex1">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                        <p class="error">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        {# custion pal flash #}
             <h1>Registro</h1>
             <form action="/Registrar" method="post">
                 <label for="nombre">Nombre </label>
